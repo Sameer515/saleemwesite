@@ -151,7 +151,7 @@ export default function SimpleHomePage({ locale = 'ro' }) {
     }
   };
 
-  const t = translations[currentLocale];
+  const t = translations[currentLocale] || translations['ro'];
 
   return (
     <div className="min-h-screen">

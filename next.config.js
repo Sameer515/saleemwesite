@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  ...(process.env.NODE_ENV === 'production' && { output: 'export' }),
+  output: 'export',
   trailingSlash: true,
   images: {
     unoptimized: true,
@@ -8,6 +8,10 @@ const nextConfig = {
   },
   basePath: process.env.NODE_ENV === 'production' ? '/saleemwesite' : '',
   assetPrefix: process.env.NODE_ENV === 'production' ? '/saleemwesite/' : '',
+  distDir: 'out',
+  experimental: {
+    allowedDevOrigins: ['192.168.40.197'],
+  },
 }
 
 module.exports = nextConfig;
