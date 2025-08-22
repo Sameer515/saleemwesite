@@ -6,6 +6,13 @@ import { motion } from 'framer-motion';
 export default function Hero() {
   const t = useTranslations('hero');
 
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="hero" className="hero-bg min-h-screen flex items-center justify-center text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -39,7 +46,8 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             <motion.button
-              className="construction-gradient px-8 py-4 rounded-lg text-lg font-semibold hover:shadow-2xl transition-all duration-300"
+              onClick={scrollToContact}
+              className="construction-gradient px-8 py-4 rounded-lg text-lg font-semibold hover:shadow-2xl transition-all duration-300 cursor-pointer"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
