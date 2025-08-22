@@ -6,8 +6,8 @@ export function generateStaticParams() {
 
 export default function LocaleLayout({children, params: {locale}}) {
   return (
-    <html lang={locale}>
-      <body>
+    <html lang={locale} suppressHydrationWarning>
+      <body suppressHydrationWarning>
         {children}
       </body>
     </html>
