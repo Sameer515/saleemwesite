@@ -1,0 +1,49 @@
+{
+  "navigation": {
+    "home": "Acasă",
+    "about": "Despre Noi",
+    "services": "Servicii",
+    "projects": "Proiecte",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Construim Visurile Tale",
+    "subtitle": "Companie de construcții cu experiență de peste 15 ani în realizarea proiectelor rezidențiale și comerciale",
+    "cta": "Solicită Ofertă",
+    "phone": "Sună Acum"
+  },
+  "about": {
+    "title": "Despre Compania Noastră",
+    "description": "Suntem o echipă dedicată de profesioniști în construcții, cu experiență vastă în realizarea proiectelor de calitate superioară. De la fundații la finisaje, ne ocupăm de fiecare detaliu.",
+    "experience": "15+ Ani Experiență",
+    "projects": "500+ Proiecte Finalizate",
+    "clients": "Clienți Mulțumiți"
+  },
+  "services": {
+    "title": "Serviciile Noastre",
+    "residential": {
+      "title": "Construcții Rezidențiale",
+      "description": "Case unifamiliale, vile și apartamente construite cu materiale de calitate"
+    },
+    "commercial": {
+      "title": "Construcții Comerciale",
+      "description": "Clădiri de birouri, magazine și spații comerciale moderne"
+    },
+    "renovation": {
+      "title": "Renovări și Modernizări",
+      "description": "Transformăm spațiile existente în medii moderne și funcționale"
+    }
+  },
+  "contact": {
+    "title": "Contactează-ne",
+    "address": "Str. Constructorilor nr. 123, București",
+    "phone": "+40 721 123 456",
+    "email": "contact@constructii.ro",
+    "form": {
+      "name": "Nume",
+      "email": "Email",
+      "message": "Mesaj",
+      "send": "Trimite Mesajul"
+    }
+  }
+}
