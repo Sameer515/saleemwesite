@@ -1,0 +1,49 @@
+{
+  "navigation": {
+    "home": "Home",
+    "about": "Chi siamo",
+    "services": "Servizi",
+    "projects": "Progetti",
+    "contact": "Contatti"
+  },
+  "hero": {
+    "title": "Costruendo i tuoi sogni",
+    "subtitle": "Impresa di costruzioni con oltre 15 anni di esperienza in progetti residenziali e commerciali",
+    "cta": "Richiedi un preventivo",
+    "phone": "Chiama ora"
+  },
+  "about": {
+    "title": "La nostra azienda",
+    "description": "Siamo un team dedicato di professionisti dell'edilizia con una vasta esperienza nella realizzazione di progetti di alta qualità. Dalle fondamenta alle finiture, curiamo ogni dettaglio.",
+    "experience": "15+ anni di esperienza",
+    "projects": "500+ progetti completati",
+    "clients": "Clienti soddisfatti"
+  },
+  "services": {
+    "title": "I nostri servizi",
+    "residential": {
+      "title": "Costruzioni residenziali",
+      "description": "Case unifamiliari, ville e appartamenti costruiti con materiali di qualità"
+    },
+    "commercial": {
+      "title": "Costruzioni commerciali",
+      "description": "Edifici per uffici, negozi e spazi commerciali moderni"
+    },
+    "renovation": {
+      "title": "Ristrutturazioni e ammodernamenti",
+      "description": "Trasformiamo gli spazi esistenti in ambienti moderni e funzionali"
+    }
+  },
+  "contact": {
+    "title": "Contattaci",
+    "address": "Via dei Costruttori 123, Bucarest",
+    "phone": "+40 721 123 456",
+    "email": "contact@construction.ro",
+    "form": {
+      "name": "Nome",
+      "email": "Email",
+      "message": "Messaggio",
+      "send": "Invia messaggio"
+    }
+  }
+}

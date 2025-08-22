@@ -1,0 +1,49 @@
+{
+  "navigation": {
+    "home": "Home",
+    "about": "About Us",
+    "services": "Services",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Building Your Dreams",
+    "subtitle": "Construction company with over 15 years of experience in residential and commercial projects",
+    "cta": "Get Quote",
+    "phone": "Call Now"
+  },
+  "about": {
+    "title": "About Our Company",
+    "description": "We are a dedicated team of construction professionals with extensive experience in delivering high-quality projects. From foundations to finishes, we handle every detail.",
+    "experience": "15+ Years Experience",
+    "projects": "500+ Completed Projects",
+    "clients": "Satisfied Clients"
+  },
+  "services": {
+    "title": "Our Services",
+    "residential": {
+      "title": "Residential Construction",
+      "description": "Single-family homes, villas and apartments built with quality materials"
+    },
+    "commercial": {
+      "title": "Commercial Construction",
+      "description": "Office buildings, stores and modern commercial spaces"
+    },
+    "renovation": {
+      "title": "Renovations & Modernizations",
+      "description": "We transform existing spaces into modern and functional environments"
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "address": "123 Builders Street, Bucharest",
+    "phone": "+40 721 123 456",
+    "email": "contact@construction.ro",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "send": "Send Message"
+    }
+  }
+}
