@@ -1,26 +1,30 @@
-'use client';
-
-import { useEffect } from 'react';
+export const metadata = {
+  title: 'Construcții Profesionale - Redirecting...',
+};
 
 export default function RootPage() {
-  useEffect(() => {
-    // Use window.location for GitHub Pages basePath compatibility
-    const basePath = process.env.NODE_ENV === 'production' ? '/saleemwesite' : '';
-    window.location.href = `${basePath}/ro/`;
-  }, []);
-
   return (
-    <div style={{ 
-      display: 'flex', 
-      justifyContent: 'center', 
-      alignItems: 'center', 
-      height: '100vh',
-      fontFamily: 'system-ui, sans-serif'
-    }}>
-      <div>
-        <h2>Redirecting...</h2>
-        <p>Loading construction website...</p>
+    <>
+      <script dangerouslySetInnerHTML={{
+        __html: `
+          setTimeout(function() {
+            window.location.href = '/saleemwesite/ro/';
+          }, 100);
+        `
+      }} />
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        height: '100vh',
+        fontFamily: 'system-ui, sans-serif'
+      }}>
+        <div style={{ textAlign: 'center' }}>
+          <h2>Redirecting...</h2>
+          <p>Loading construction website...</p>
+          <p><a href="/saleemwesite/ro/" style={{ color: '#FF6B35', textDecoration: 'underline' }}>Click here if not redirected automatically</a></p>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
