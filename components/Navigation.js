@@ -12,10 +12,11 @@ export default function Navigation() {
   const router = useRouter();
 
   const currentLocale = pathname.split('/')[1] || 'ro';
-  const otherLocale = currentLocale === 'ro' ? 'en' : 'ro';
+  const locales = ['ro', 'en', 'de', 'fr', 'es', 'ar', 'it'];
+  const [isLangOpen, setLangOpen] = useState(false);
 
-  const switchLanguage = () => {
-    const newPath = pathname.replace(`/${currentLocale}`, `/${otherLocale}`);
+  const switchLanguage = (locale) => {
+    const newPath = pathname.replace(`/${currentLocale}`, `/${locale}`);
     router.push(newPath);
   };
 
@@ -56,14 +57,41 @@ export default function Navigation() {
                   {t(item.key)}
                 </motion.a>
               ))}
-              <motion.button
-                onClick={switchLanguage}
-                className="bg-construction-orange text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-construction-yellow transition-colors"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {otherLocale.toUpperCase()}
-              </motion.button>
+              <div className="relative">
+                <motion.button
+                  onClick={() => setLangOpen(!isLangOpen)}
+                  className="bg-construction-orange text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-construction-yellow transition-colors flex items-center"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {currentLocale.toUpperCase()}
+                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                </motion.button>
+                {isLangOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="absolute right-0 mt-2 w-24 bg-white rounded-md shadow-lg z-20"
+                  >
+                    <div className="py-1">
+                      {locales.map((locale) => (
+                        <a
+                          key={locale}
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            switchLanguage(locale);
+                            setLangOpen(false);
+                          }}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        >
+                          {locale.toUpperCase()}
+                        </a>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </div>
             </div>
           </div>
 
@@ -98,12 +126,34 @@ export default function Navigation() {
                   {t(item.key)}
                 </a>
               ))}
-              <button
-                onClick={switchLanguage}
-                className="bg-construction-orange text-white block w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-construction-yellow transition-colors"
-              >
-                {otherLocale.toUpperCase()}
-              </button>
+              <div className="relative">
+                <button
+                  onClick={() => setLangOpen(!isLangOpen)}
+                  className="bg-construction-orange text-white block w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-construction-yellow transition-colors flex justify-between items-center"
+                >
+                  <span>{currentLocale.toUpperCase()}</span>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                {isLangOpen && (
+                  <div className="pl-4">
+                    {locales.map((locale) => (
+                      <a
+                        key={locale}
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          switchLanguage(locale);
+                          setIsOpen(false);
+                          setLangOpen(false);
+                        }}
+                        className="text-construction-dark hover:text-construction-orange block px-3 py-2 rounded-md text-base font-medium"
+                      >
+                        {locale.toUpperCase()}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           </motion.div>
         )}
