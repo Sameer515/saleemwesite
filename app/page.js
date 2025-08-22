@@ -1,14 +1,13 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 
 export default function RootPage() {
-  const router = useRouter();
-
   useEffect(() => {
-    router.replace('/ro');
-  }, [router]);
+    // Use window.location for GitHub Pages basePath compatibility
+    const basePath = process.env.NODE_ENV === 'production' ? '/saleemwesite' : '';
+    window.location.href = `${basePath}/ro/`;
+  }, []);
 
   return (
     <div style={{ 
