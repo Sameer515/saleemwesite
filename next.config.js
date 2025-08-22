@@ -6,8 +6,8 @@ const nextConfig = {
     unoptimized: true,
     domains: ['images.unsplash.com', 'unsplash.com'],
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/construction-website' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/construction-website/' : '',
+  basePath: process.env.NODE_ENV === 'production' ? '/saleemwesite' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/saleemwesite/' : '',
 }
 
 module.exports = nextConfig;
