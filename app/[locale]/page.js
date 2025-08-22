@@ -1,10 +1,7 @@
 import SimpleHomePage from '../../components/SimpleHomePage';
 
 export function generateStaticParams() {
-  return [
-    {locale: 'ro'},
-    {locale: 'en'}
-  ];
+  return ['ro', 'en', 'de', 'fr', 'es', 'ar', 'it'].map((locale) => ({ locale }));
 }
 
 export default function Page({ params: { locale } }) {

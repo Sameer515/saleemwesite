@@ -5,6 +5,8 @@ import { useState } from 'react';
 
 export default function SimpleHomePage({ locale = 'ro' }) {
   const [currentLocale, setCurrentLocale] = useState(locale);
+  const [isLangOpen, setLangOpen] = useState(false);
+  const locales = ['ro', 'en', 'de', 'fr', 'es', 'ar', 'it'];
 
   const translations = {
     ro: {
@@ -46,6 +48,106 @@ export default function SimpleHomePage({ locale = 'ro' }) {
       address: "123 Builders Street, Bucharest",
       phoneNum: "+40 721 123 456",
       email: "contact@construction.ro"
+    },
+    de: {
+      title: "Ihre Träume bauen",
+      subtitle: "Bauunternehmen mit über 15 Jahren Erfahrung in Wohn- und Gewerbeprojekten",
+      cta: "Angebot erhalten",
+      phone: "Jetzt anrufen",
+      about: "Über uns",
+      services: "Dienstleistungen",
+      projects: "Projekte",
+      contact: "Kontakt",
+      aboutTitle: "Über unser Unternehmen",
+      aboutDesc: "Wir sind ein engagiertes Team von Bauprofis mit umfangreicher Erfahrung in der Umsetzung hochwertiger Projekte.",
+      servicesTitle: "Unsere Dienstleistungen",
+      residential: "Wohnungsbau",
+      commercial: "Gewerbebau",
+      renovation: "Renovierungen & Modernisierungen",
+      contactTitle: "Kontaktieren Sie uns",
+      address: "Baumeisterstraße 123, Bukarest",
+      phoneNum: "+40 721 123 456",
+      email: "contact@construction.ro"
+    },
+    fr: {
+      title: "Construire vos rêves",
+      subtitle: "Entreprise de construction avec plus de 15 ans d'expérience dans les projets résidentiels et commerciaux",
+      cta: "Obtenir un devis",
+      phone: "Appelez maintenant",
+      about: "À propos",
+      services: "Services",
+      projects: "Projets",
+      contact: "Contact",
+      aboutTitle: "À propos de notre entreprise",
+      aboutDesc: "Nous sommes une équipe dédiée de professionnels de la construction avec une vaste expérience dans la réalisation de projets de haute qualité.",
+      servicesTitle: "Nos services",
+      residential: "Construction résidentielle",
+      commercial: "Construction commerciale",
+      renovation: "Rénovations et modernisations",
+      contactTitle: "Contactez-nous",
+      address: "123 Rue des Constructeurs, Bucarest",
+      phoneNum: "+40 721 123 456",
+      email: "contact@construction.ro"
+    },
+    es: {
+      title: "Construyendo tus sueños",
+      subtitle: "Empresa de construcción con más de 15 años de experiencia en proyectos residenciales y comerciales",
+      cta: "Obtener cotización",
+      phone: "Llamar ahora",
+      about: "Acerca de",
+      services: "Servicios",
+      projects: "Proyectos",
+      contact: "Contacto",
+      aboutTitle: "Acerca de nuestra empresa",
+      aboutDesc: "Somos un equipo dedicado de profesionales de la construcción con amplia experiencia en la entrega de proyectos de alta calidad.",
+      servicesTitle: "Nuestros servicios",
+      residential: "Construcción residencial",
+      commercial: "Construcción comercial",
+      renovation: "Renovaciones y modernizaciones",
+      contactTitle: "Contáctanos",
+      address: "Calle de los Constructores 123, Bucarest",
+      phoneNum: "+40 721 123 456",
+      email: "contact@construction.ro"
+    },
+    ar: {
+      title: "نبني أحلامك",
+      subtitle: "شركة مقاولات بخبرة تزيد عن 15 عامًا في المشاريع السكنية والتجارية",
+      cta: "احصل على عرض سعر",
+      phone: "اتصل الآن",
+      about: "من نحن",
+      services: "خدماتنا",
+      projects: "مشاريعنا",
+      contact: "اتصل بنا",
+      aboutTitle: "عن شركتنا",
+      aboutDesc: "نحن فريق متخصص من محترفي البناء لدينا خبرة واسعة في تقديم مشاريع عالية الجودة.",
+      servicesTitle: "خدماتنا",
+      residential: "بناء سكني",
+      commercial: "بناء تجاري",
+      renovation: "تجديدات وتحديثات",
+      contactTitle: "اتصل بنا",
+      address: "شارع البناة 123، بوخارست",
+      phoneNum: "+40 721 123 456",
+      email: "contact@construction.ro"
+    },
+    it: {
+      title: "Costruendo i tuoi sogni",
+      subtitle: "Impresa di costruzioni con oltre 15 anni di esperienza in progetti residenziali e commerciali",
+      cta: "Richiedi preventivo",
+      phone: "Chiama ora",
+      about: "Chi siamo",
+      services: "Servizi",
+      projects: "Progetti",
+      contact: "Contatti",
+      aboutTitle: "La nostra azienda",
+      aboutDesc: "Siamo un team dedicato di professionisti dell'edilizia con una vasta esperienza nella realizzazione di progetti di alta qualità.",
+      servicesTitle: "I nostri servizi",
+      residential: "Costruzioni residenziali",
+      commercial: "Costruzioni commerciali",
+      renovation: "Ristrutturazioni e ammodernamenti",
+      contactTitle: "Contattaci",
+      address: "Via dei Costruttori 123, Bucarest",
+      phoneNum: "+40 721 123 456",
+      email: "contact@construction.ro"
     }
   };
 
@@ -80,13 +182,40 @@ export default function SimpleHomePage({ locale = 'ro' }) {
                     {t[item]}
                   </motion.a>
                 ))}
-                <motion.button
-                  onClick={() => setCurrentLocale(currentLocale === 'ro' ? 'en' : 'ro')}
-                  className="bg-construction-orange text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-construction-yellow transition-colors"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  {currentLocale === 'ro' ? 'EN' : 'RO'}
-                </motion.button>
+                <div className="relative">
+                  <motion.button
+                    onClick={() => setLangOpen(!isLangOpen)}
+                    className="bg-construction-orange text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-construction-yellow transition-colors flex items-center"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    {currentLocale.toUpperCase()}
+                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                  </motion.button>
+                  {isLangOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="absolute right-0 mt-2 w-24 bg-white rounded-md shadow-lg z-20"
+                    >
+                      <div className="py-1">
+                        {locales.map((locale) => (
+                          <a
+                            key={locale}
+                            href="#"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setCurrentLocale(locale);
+                              setLangOpen(false);
+                            }}
+                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          >
+                            {locale.toUpperCase()}
+                          </a>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -126,6 +255,12 @@ export default function SimpleHomePage({ locale = 'ro' }) {
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               <motion.button
+                onClick={() => {
+                  const contactSection = document.getElementById('contact');
+                  if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
                 className="construction-gradient px-8 py-4 rounded-lg text-lg font-semibold hover:shadow-2xl transition-all duration-300"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
