@@ -4,7 +4,7 @@ A modern, multilingual construction company website built with Next.js, featurin
 
 ## ✨ Features
 
-- **🌍 Multilingual Support** - Romanian (primary) and English
+- **🌍 Multilingual Support** - Romanian, English, German, French, Spanish, Arabic, and Italian
 - **🎨 Modern Design** - Construction-themed UI with orange/yellow color scheme
 - **📱 Fully Responsive** - Optimized for desktop, tablet, and mobile
 - **✨ Rich Animations** - Smooth Framer Motion animations throughout
@@ -42,8 +42,13 @@ npm run dev
 
 ## 🌐 Available Languages
 
-- **Romanian (ro)** - Primary language
-- **English (en)** - Secondary language
+- **Romanian (ro)**
+- **English (en)**
+- **German (de)**
+- **French (fr)**
+- **Spanish (es)**
+- **Arabic (ar)**
+- **Italian (it)**
 
 Access different languages via:
 - Romanian: `http://localhost:3000/ro`
@@ -105,6 +110,11 @@ Replace images in the components with your own construction photos. Current imag
 Update translations in the `messages/` directory:
 - `messages/ro.json` - Romanian content
 - `messages/en.json` - English content
+- `messages/de.json` - German content
+- `messages/fr.json` - French content
+- `messages/es.json` - Spanish content
+- `messages/ar.json` - Arabic content
+- `messages/it.json` - Italian content
 
 ## 📄 License
 
