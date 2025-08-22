@@ -1,10 +1,13 @@
-const withNextIntl = require('next-intl/plugin')('./i18n.js');
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
+  trailingSlash: true,
   images: {
+    unoptimized: true,
     domains: ['images.unsplash.com', 'unsplash.com'],
   },
+  basePath: process.env.NODE_ENV === 'production' ? '/construction-website' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/construction-website/' : '',
 }
 
-module.exports = withNextIntl(nextConfig);
+module.exports = nextConfig;
