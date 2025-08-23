@@ -6,6 +6,7 @@ import { useState } from 'react';
 export default function SimpleHomePage({ locale = 'ro' }) {
   const [currentLocale, setCurrentLocale] = useState(locale);
   const [isLangOpen, setLangOpen] = useState(false);
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const locales = ['ro', 'en', 'de', 'fr', 'es', 'ar', 'it'];
 
   const translations = {
@@ -164,12 +165,13 @@ export default function SimpleHomePage({ locale = 'ro' }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <motion.div 
-              className="flex-shrink-0 font-bold text-2xl construction-gradient bg-clip-text text-transparent"
+              className="flex-shrink-0 font-bold text-xl sm:text-2xl construction-gradient bg-clip-text text-transparent"
               whileHover={{ scale: 1.05 }}
             >
               ConstructPro
             </motion.div>
 
+            {/* Desktop Navigation */}
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
                 {['about', 'services', 'projects', 'contact'].map((item) => (
@@ -178,6 +180,7 @@ export default function SimpleHomePage({ locale = 'ro' }) {
                     href={`#${item}`}
                     className="text-construction-dark hover:text-construction-orange px-3 py-2 rounded-md text-sm font-medium transition-colors"
                     whileHover={{ scale: 1.05 }}
+                    onClick={() => setMobileMenuOpen(false)}
                   >
                     {t[item]}
                   </motion.a>
@@ -218,7 +221,86 @@ export default function SimpleHomePage({ locale = 'ro' }) {
                 </div>
               </div>
             </div>
+
+            {/* Mobile Navigation Button */}
+            <div className="md:hidden flex items-center space-x-2">
+              {/* Mobile Language Selector */}
+              <div className="relative">
+                <motion.button
+                  onClick={() => setLangOpen(!isLangOpen)}
+                  className="bg-construction-orange text-white px-2 py-1 rounded text-xs font-medium hover:bg-construction-yellow transition-colors flex items-center"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  {currentLocale.toUpperCase()}
+                  <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                </motion.button>
+                {isLangOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="absolute right-0 mt-2 w-20 bg-white rounded-md shadow-lg z-20"
+                  >
+                    <div className="py-1">
+                      {locales.map((locale) => (
+                        <a
+                          key={locale}
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setCurrentLocale(locale);
+                            setLangOpen(false);
+                          }}
+                          className="block px-3 py-2 text-xs text-gray-700 hover:bg-gray-100"
+                        >
+                          {locale.toUpperCase()}
+                        </a>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </div>
+              
+              {/* Hamburger Menu Button */}
+              <motion.button
+                onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
+                className="text-construction-dark hover:text-construction-orange p-2"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  {isMobileMenuOpen ? (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                  ) : (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                  )}
+                </svg>
+              </motion.button>
+            </div>
           </div>
+
+          {/* Mobile Menu */}
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden bg-white/95 backdrop-blur-sm border-t border-gray-200"
+            >
+              <div className="px-2 pt-2 pb-3 space-y-1">
+                {['about', 'services', 'projects', 'contact'].map((item) => (
+                  <motion.a
+                    key={item}
+                    href={`#${item}`}
+                    className="text-construction-dark hover:text-construction-orange block px-3 py-2 rounded-md text-base font-medium transition-colors"
+                    whileHover={{ x: 10 }}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {t[item]}
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
+          )}
         </div>
       </motion.nav>
 
@@ -231,7 +313,7 @@ export default function SimpleHomePage({ locale = 'ro' }) {
             transition={{ duration: 0.8 }}
           >
             <motion.h1 
-              className="text-5xl md:text-7xl font-bold mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 sm:mb-6 px-2"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.2 }}
@@ -240,7 +322,7 @@ export default function SimpleHomePage({ locale = 'ro' }) {
             </motion.h1>
             
             <motion.p 
-              className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed px-4"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -249,7 +331,7 @@ export default function SimpleHomePage({ locale = 'ro' }) {
             </motion.p>
             
             <motion.div 
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
@@ -261,7 +343,7 @@ export default function SimpleHomePage({ locale = 'ro' }) {
                     contactSection.scrollIntoView({ behavior: 'smooth' });
                   }
                 }}
-                className="construction-gradient px-8 py-4 rounded-lg text-lg font-semibold hover:shadow-2xl transition-all duration-300"
+                className="construction-gradient px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:shadow-2xl transition-all duration-300 w-full sm:w-auto"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -269,7 +351,7 @@ export default function SimpleHomePage({ locale = 'ro' }) {
               </motion.button>
               
               <motion.button
-                className="border-2 border-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-construction-dark transition-all duration-300"
+                className="border-2 border-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-white hover:text-construction-dark transition-all duration-300 w-full sm:w-auto"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -289,19 +371,20 @@ export default function SimpleHomePage({ locale = 'ro' }) {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-construction-dark mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-construction-dark mb-4 sm:mb-6 px-4">
               {t.aboutTitle}
             </h2>
-            <p className="text-xl text-construction-gray max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-construction-gray max-w-3xl mx-auto leading-relaxed px-4">
               {t.aboutDesc}
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
+              className="px-4 lg:px-0"
             >
               <motion.img
                 src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
@@ -315,9 +398,9 @@ export default function SimpleHomePage({ locale = 'ro' }) {
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="space-y-8"
+              className="space-y-6 sm:space-y-8 px-4 lg:px-0"
             >
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
                 {[
                   { number: '15+', label: currentLocale === 'ro' ? 'Ani Experiență' : 'Years Experience' },
                   { number: '500+', label: currentLocale === 'ro' ? 'Proiecte' : 'Projects' },
@@ -325,13 +408,13 @@ export default function SimpleHomePage({ locale = 'ro' }) {
                 ].map((stat, index) => (
                   <motion.div
                     key={index}
-                    className="text-center p-6 bg-white rounded-lg shadow-lg"
+                    className="text-center p-4 sm:p-6 bg-white rounded-lg shadow-lg"
                     whileHover={{ y: -5 }}
                   >
-                    <div className="text-3xl font-bold text-construction-orange mb-2">
+                    <div className="text-2xl sm:text-3xl font-bold text-construction-orange mb-2">
                       {stat.number}
                     </div>
-                    <div className="text-construction-gray text-sm">
+                    <div className="text-construction-gray text-xs sm:text-sm">
                       {stat.label}
                     </div>
                   </motion.div>
@@ -351,12 +434,12 @@ export default function SimpleHomePage({ locale = 'ro' }) {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-construction-dark mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-construction-dark mb-4 sm:mb-6 px-4">
               {t.servicesTitle}
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 px-4 sm:px-0">
             {[
               {
                 title: t.residential,
@@ -398,8 +481,8 @@ export default function SimpleHomePage({ locale = 'ro' }) {
                   </motion.div>
                 </div>
 
-                <div className="p-6 bg-white">
-                  <h3 className="text-xl font-bold text-construction-dark mb-3">
+                <div className="p-4 sm:p-6 bg-white">
+                  <h3 className="text-lg sm:text-xl font-bold text-construction-dark mb-3">
                     {service.title}
                   </h3>
                 </div>
@@ -418,12 +501,12 @@ export default function SimpleHomePage({ locale = 'ro' }) {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-construction-dark mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-construction-dark mb-4 sm:mb-6 px-4">
               {currentLocale === 'ro' ? 'Proiectele Noastre' : 'Our Projects'}
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 px-4 sm:px-0">
             {[
               'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
               'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
@@ -440,7 +523,7 @@ export default function SimpleHomePage({ locale = 'ro' }) {
                 transition={{ duration: 0.8, delay: index * 0.1 }}
                 whileHover={{ y: -10, scale: 1.02 }}
               >
-                <div className="relative h-80 overflow-hidden">
+                <div className="relative h-48 sm:h-64 lg:h-80 overflow-hidden">
                   <motion.img
                     src={image}
                     alt={`Project ${index + 1}`}
@@ -465,17 +548,17 @@ export default function SimpleHomePage({ locale = 'ro' }) {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 px-4">
               {t.contactTitle}
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 px-4 sm:px-0">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="space-y-8"
+              className="space-y-6 sm:space-y-8"
             >
               {[
                 { icon: '📍', label: currentLocale === 'ro' ? 'Adresă' : 'Address', value: t.address },
@@ -484,13 +567,13 @@ export default function SimpleHomePage({ locale = 'ro' }) {
               ].map((item, index) => (
                 <motion.div
                   key={index}
-                  className="flex items-center space-x-4 p-4 bg-white/10 rounded-lg backdrop-blur-sm"
+                  className="flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 bg-white/10 rounded-lg backdrop-blur-sm"
                   whileHover={{ x: 10, scale: 1.02 }}
                 >
-                  <div className="text-2xl">{item.icon}</div>
+                  <div className="text-xl sm:text-2xl">{item.icon}</div>
                   <div>
-                    <div className="text-gray-300 text-sm">{item.label}</div>
-                    <div className="font-semibold text-construction-orange">{item.value}</div>
+                    <div className="text-gray-300 text-xs sm:text-sm">{item.label}</div>
+                    <div className="font-semibold text-construction-orange text-sm sm:text-base">{item.value}</div>
                   </div>
                 </motion.div>
               ))}
@@ -501,27 +584,27 @@ export default function SimpleHomePage({ locale = 'ro' }) {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <form className="space-y-4 sm:space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <input
                     type="text"
                     placeholder={currentLocale === 'ro' ? 'Nume' : 'Name'}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-construction-orange"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-construction-orange text-sm sm:text-base"
                   />
                   <input
                     type="email"
                     placeholder="Email"
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-construction-orange"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-construction-orange text-sm sm:text-base"
                   />
                 </div>
                 <textarea
                   placeholder={currentLocale === 'ro' ? 'Mesaj' : 'Message'}
-                  rows="6"
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-construction-orange resize-none"
+                  rows="5"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-construction-orange resize-none text-sm sm:text-base"
                 ></textarea>
                 <motion.button
                   type="submit"
-                  className="w-full construction-gradient py-4 rounded-lg font-semibold text-lg hover:shadow-2xl transition-all duration-300"
+                  className="w-full construction-gradient py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg hover:shadow-2xl transition-all duration-300"
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                 >

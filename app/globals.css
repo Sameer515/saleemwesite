@@ -25,6 +25,14 @@
     background-attachment: fixed;
   }
   
+  /* Mobile-specific hero background */
+  @media (max-width: 768px) {
+    .hero-bg {
+      background-attachment: scroll;
+      min-height: 100vh;
+    }
+  }
+  
   .animate-float {
     animation: float 3s ease-in-out infinite;
   }
@@ -41,5 +49,31 @@
   @keyframes scaleIn {
     0% { transform: scale(0.8); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }
+  }
+  
+  /* Mobile touch improvements */
+  @media (max-width: 768px) {
+    .touch-target {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    /* Improve tap targets for mobile */
+    button, a {
+      touch-action: manipulation;
+    }
+    
+    /* Prevent zoom on input focus */
+    input, textarea, select {
+      font-size: 16px;
+    }
+  }
+  
+  /* Smooth scrolling for mobile */
+  @media (max-width: 768px) {
+    html {
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
   }
 }
