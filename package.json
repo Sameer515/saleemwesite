@@ -11,7 +11,7 @@
     "deploy": "npm run export && gh-pages -d out --dotfiles"
   },
   "dependencies": {
-    "framer-motion": "^12.23.12",
+    "framer-motion": "^12.34.3",
     "next": "^15.5.0",
     "next-intl": "^3.0.0",
     "react": "^18.3.1",
